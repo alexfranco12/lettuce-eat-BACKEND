@@ -36,15 +36,27 @@ INSTALLED_APPS = [
   'django.contrib.sessions',
   'django.contrib.messages',
   'django.contrib.staticfiles',
+  'django.contrib.sites',
 
   # local
   'lettuce_eat',
+
+  # 3rd party
   'django_extensions',
+  'rest_framework',
+  'rest_framework.authtoken',
+  'allauth',
+  'allauth.account',
+  'allauth.socialaccount',
+  'dj_rest_auth',
+  'dj_rest_auth.registration',
+  'corsheaders',
 ]
 
 MIDDLEWARE = [
   'django.middleware.security.SecurityMiddleware',
   'django.contrib.sessions.middleware.SessionMiddleware',
+  'corsheaders.middleware.CorsMiddleware',
   'django.middleware.common.CommonMiddleware',
   'django.middleware.csrf.CsrfViewMiddleware',
   'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -53,6 +65,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'config.urls'
+
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'http://localhost:8000',
+)
 
 TEMPLATES = [
   {
@@ -72,6 +89,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
+REST_FRAMEWORK = {
+  'DEFAULT_PERMISSION_CLASSES': [
+    'rest_framework.permissions.IsAuthenticated',
+    # 'rest_framework.permissions.AllowAny',
+    # 'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+  ],
+  'DEFAULT_AUTHENTICATION_CLASSES': [
+    'rest_framework.authentication.SessionAuthentication',
+    'rest_framework.authentication.TokenAuthentication'
+  ],
+}
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -129,3 +157,10 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# part of built-in Django 'sites' framework, 
+# which is a way to host multiple websites from the same Django project 
+SITE_ID = 1
+
+# email will be sent when a new user is registered, asking them to confirm their account
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
