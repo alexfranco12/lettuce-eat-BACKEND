@@ -1,9 +1,10 @@
 from django.urls import path
-from .views import RestaurantList, RestaurantDetail, UserList, UserDetail
+from rest_framework.routers import SimpleRouter
+from .views import UserViewSet, RestaurantViewSet
 
-urlpatterns = [
-    path('users/', UserList.as_view()),
-    path('users/<int:pk>', UserDetail.as_view()),
-    path('', RestaurantList.as_view()),
-    path('<int:pk>', RestaurantDetail.as_view())
-]
+router = SimpleRouter()
+router.register('users', UserViewSet, basename='users')
+router.register('', RestaurantViewSet, basename='restaurants')
+
+
+urlpatterns = router.urls
