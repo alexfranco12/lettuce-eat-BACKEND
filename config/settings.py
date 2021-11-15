@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 import os
 from decouple import config, Csv
 from pathlib import Path
+import django_heroku
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -51,6 +52,7 @@ INSTALLED_APPS = [
   'dj_rest_auth',
   'dj_rest_auth.registration',
   'corsheaders',
+  'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -153,6 +155,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATIC_ROOT=os.path.join(BASE_DIR, "static/")
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -164,3 +168,6 @@ SITE_ID = 1
 
 # email will be sent when a new user is registered, asking them to confirm their account
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())

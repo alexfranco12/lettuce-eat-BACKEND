@@ -15,6 +15,11 @@ djangorestframework = "*"
 django-cors-headers = "*"
 dj-rest-auth = "*"
 django-allauth = "*"
+pyyaml = "*"
+uritemplate = "*"
+drf-yasg = "*"
+gunicorn = "*"
+django-heroku = "*"
 
 [requires]
 python_version = "3.9"
