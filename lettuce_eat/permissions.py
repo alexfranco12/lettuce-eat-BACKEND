@@ -8,3 +8,7 @@ class IsAuthorOrReadOnly(permissions.BasePermission):
 
     # write permissions are only allowed to the author of a post
     return obj.author == request.user
+
+class ReadOnly(permissions.BasePermission):
+  def has_permission(self, request, view):
+    return request.method in permissions.SAFE_METHODS

@@ -4,7 +4,11 @@ from .views import UserViewSet, RestaurantViewSet
 
 router = SimpleRouter()
 router.register('users', UserViewSet, basename='users')
-router.register('', RestaurantViewSet, basename='restaurants')
+router.register('restaurants', RestaurantViewSet, basename='restaurants')
+
+urlpatterns = [
+
+]
 
 
-urlpatterns = router.urls
+urlpatterns += router.urls

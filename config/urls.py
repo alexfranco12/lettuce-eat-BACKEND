@@ -36,8 +36,8 @@ schema_view = get_schema_view(
 
 urlpatterns = [
   path('admin/', admin.site.urls),
+  path('', include('lettuce_eat.urls')),
   path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
-  path('api/', include('lettuce_eat.urls')),
   path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
   path('api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
   path('swagger/', schema_view.with_ui(
