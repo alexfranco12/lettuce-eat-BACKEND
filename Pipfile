@@ -20,6 +20,7 @@ uritemplate = "*"
 drf-yasg = "*"
 gunicorn = "*"
 django-heroku = "*"
+whitenoise = "*"
 
 [requires]
 python_version = "3.9"
